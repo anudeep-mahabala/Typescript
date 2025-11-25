@@ -13,10 +13,11 @@ function RandomId() {
     return Math.floor(Math.random() * 100) + 1;
 }
 function addNewPizza(newPizza) {
-    if (!newPizza.id) {
-        newPizza.id = RandomId();
-    }
-    menu.push(newPizza);
+    const newItem = {
+        id: RandomId(),
+        ...newPizza
+    };
+    menu.push(newItem);
 }
 function placeOrder(pizza) {
     const [item] = menu.filter((item) => item.name == pizza);

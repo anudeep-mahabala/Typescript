@@ -5,7 +5,7 @@ type Order = {
 };
 
 type Pizza = {
-  id?:number
+  id:number
   name: string;
   price: number;
 };
@@ -25,11 +25,12 @@ function RandomId():number {
   return Math.floor(Math.random() * 100) + 1;
 }
 
-function addNewPizza(newPizza: Pizza) :void{
-  if(!newPizza.id){
-    newPizza.id=RandomId();
+function addNewPizza(newPizza: Omit<Pizza, "id">) :void{
+  const newItem:Pizza={
+    id:RandomId(),
+    ...newPizza
   }
-  menu.push(newPizza);
+  menu.push(newItem)
 }
 
 function placeOrder(pizza: string):Order | undefined{
